@@ -1,12 +1,14 @@
-import { SvelteKitAuth } from '@auth/sveltekit';
-import GitHub from '@auth/core/providers/github';
-import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private';
+import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
 
-export const handle = SvelteKitAuth({
-  providers: [
-    GitHub({
-      clientId: GITHUB_ID,
-      clientSecret: GITHUB_SECRET
-    })
-  ]
-});
+export const load: PageServerLoad = async ({ locals }) => {
+  const session = await locals.getSession();
+
+  if (!session?.user) {
+    throw redirect(302, '/auth/signin');
+  }
+
+  return {
+    user: session.user,
+  };
+};
