@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^4.20241022.0",
-    "@auth/core": "^0.39.0",
-    "@auth/d1-adapter": "^1.9.0"
+    "@cloudflare/workers-types": "^4.20250523.0",
+    "@auth/core": "^0.39.1",
+    "@auth/d1-adapter": "^1.9.1"
   },
   "devDependencies": {
     "wrangler": "^3.83.0",
