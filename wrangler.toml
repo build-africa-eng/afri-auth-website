@@ -6,3 +6,8 @@ type = "pages"
 command = "npm run build"
 cwd = "." 
 publish_dir = "build"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "afri-auth-db"
+database_id = "9ac69c02-2fa6-48a6-9e0a-e646aa68a684"
