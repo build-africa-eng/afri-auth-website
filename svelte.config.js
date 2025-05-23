@@ -4,9 +4,10 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 export default {
   preprocess: vitePreprocess(),
   kit: {
-    adapter: adapter(),
-    files: {
-      appTemplate: 'index.html'
-    }
+    adapter: adapter({
+      config: {
+        platform: { env: { DB: 'D1Database' } }
+      }
+    })
   }
 };
