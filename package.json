@@ -8,11 +8,12 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "build": "npm run sync && vite build",
+    "build": "npm run sync && vit build",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "audit:check": "npm audit || echo 'Audit found issues, please run npm audit fix manually'",
     "sync": "svelte-kit sync"
   },
   "devDependencies": {
