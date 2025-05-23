@@ -1,17 +1,17 @@
-import { SvelteKitAuth } from '@auth/sveltekit';
-import GitHub from '@auth/core/providers/github';
-import { D1Adapter } from '@auth/d1-adapter';
+import { Auth } from '@auth/core';
 import type { D1Database } from '@cloudflare/workers-types';
-import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private';
+import { D1Adapter } from '@auth/d1-adapter';
+import GitHub from '@auth/core/providers/github';
+import type { AuthConfig } from '@auth/core/types';
 
-export const handle = SvelteKitAuth({
+export const authConfig: AuthConfig = {
   adapter: D1Adapter({
     db: (globalThis as any).env.DB as D1Database
   }),
   providers: [
     GitHub({
-      clientId: GITHUB_ID,
-      clientSecret: GITHUB_SECRET
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
     })
   ],
   callbacks: {
@@ -20,4 +20,11 @@ export const handle = SvelteKitAuth({
       return session;
     }
   }
-});
+};
+
+export async function handleAuth(request: Request, env: Env) {
+  return await Auth(request, {
+    ...authConfig,
+    secret: process.env.AUTH_SECRET
+  });
+}
