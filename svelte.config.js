@@ -1,14 +1,23 @@
-import adapter from '@sveltejs/adapter-cloudflare';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+import path from 'path';
 
-export default {
-  kit: {
-    adapter: adapter({
-      // Optional: specify platform options for D1 database access
-      platform: {
-        d1: 'DB' // Matches binding in wrangler.toml
-      }
-    })
+export default defineConfig({
+  plugins: [sveltekit()],
+  build: {
+    outDir: 'build'
   },
-  preprocess: vitePreprocess()
-};
+  server: {
+    fs: {
+      allow: ['.']
+    }
+  },
+  ssr: {
+    noExternal: ['@auth/sveltekit', '@auth/core']
+  },
+  resolve: {
+    alias: {
+      '@auth/sveltekit/server': path.resolve('node_modules/@auth/sveltekit/dist/server.js')
+    }
+  }
+});
