@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import path from 'path';
 
 export default defineConfig({
   plugins: [sveltekit()],
@@ -17,5 +18,10 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['@auth/sveltekit/server']
+  },
+  resolve: {
+    alias: {
+      '@auth/sveltekit/server': path.resolve('node_modules/@auth/sveltekit/dist/server.js')
+    }
   }
 });
