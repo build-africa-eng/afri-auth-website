@@ -1,23 +1,13 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import path from 'path';
+import adapter from '@sveltejs/adapter-cloudflare';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-export default defineConfig({
-  plugins: [sveltekit()],
-  build: {
-    outDir: 'build'
+export default {
+  kit: {
+    adapter: adapter({
+      platform: {
+        d1: 'DB' // Matches wrangler.toml binding
+      }
+    })
   },
-  server: {
-    fs: {
-      allow: ['.']
-    }
-  },
-  ssr: {
-    noExternal: ['@auth/sveltekit', '@auth/core']
-  },
-  resolve: {
-    alias: {
-      '@auth/sveltekit/server': path.resolve('node_modules/@auth/sveltekit/dist/server.js')
-    }
-  }
-});
+  preprocess: vitePreprocess()
+};
