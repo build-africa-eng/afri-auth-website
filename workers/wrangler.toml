@@ -1,4 +1,4 @@
-name = "afri-auth-website-workers"
+name = "afri-auth-website"
 compatibility_date = "2025-05-23"
 main = "src/index.ts"
 
