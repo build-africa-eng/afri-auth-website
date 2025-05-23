@@ -7,3 +7,9 @@ compatibility_flags = ["nodejs_compat"]
 binding = "DB"
 database_name = "afri-auth-db"
 database_id = "9ac69c02-2fa6-48a6-9e0a-e646aa68a684"
+
+[vars]
+AUTH_SECRET = "aaa123321123321*bb1cc2dd3"
+AUTH_TRUST_HOST = "true"
+GITHUB_ID = "Ov23limgsNaOXoBHiLsf"
+GITHUB_SECRET = "aac60e4285db71b53b7a282c72082d5f09a163b7"
