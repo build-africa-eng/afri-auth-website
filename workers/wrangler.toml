@@ -1,6 +1,6 @@
 name = "afri-auth-website-workers"
 compatibility_date = "2025-05-23"
-main = "index.ts"
+main = "./index.ts"
 
 [[d1_databases]]
 binding = "DB"
