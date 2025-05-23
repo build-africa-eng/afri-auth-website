@@ -4,6 +4,7 @@
   "type": "module",
   "engines": {
     "node": "^22.9.0"
+    "npm": "^11.4.1"
   },
   "scripts": {
     "dev": "vite dev",
