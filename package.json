@@ -1,0 +1,35 @@
+{
+  "name": "afri-auth-website",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^4.7.2",
+    "@sveltejs/kit": "^2.7.2",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@types/node": "^20.12.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "prettier": "^3.1.1",
+    "prettier-plugin-svelte": "^3.1.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "@auth/core": "^0.35.3",
+    "@auth/d1-adapter": "^0.7.5",
+    "@auth/sveltekit": "^0.14.4"
+  },
+  "type": "module"
+}
