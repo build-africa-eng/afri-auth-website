@@ -2,6 +2,8 @@
   "name": "afri-auth-website",
   "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": "^20.9.0"
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -12,7 +14,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250523.0",
-    "@sveltejs/adapter-cloudflare": "^4.7.2",
+    "@sveltejs/adapter-cloudflare": "^4.9.0",
     "@sveltejs/kit": "^2.21.1",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@types/node": "^22.7.4",
@@ -26,7 +28,7 @@
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vitest": "^2.1.9",
-    "wrangler": "^4.16.1"
+    "wrangler": "^3.57.2"
   },
   "dependencies": {
     "@auth/core": "^0.39.1",
