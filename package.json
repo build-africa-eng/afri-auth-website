@@ -7,11 +7,12 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "npm run sync && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "sync": "svelte-kit sync"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250523.0",
