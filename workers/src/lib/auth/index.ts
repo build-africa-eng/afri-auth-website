@@ -4,27 +4,35 @@ import { D1Adapter } from '@auth/d1-adapter';
 import GitHub from '@auth/core/providers/github';
 import type { AuthConfig } from '@auth/core/types';
 
-export const authConfig: AuthConfig = {
-  adapter: D1Adapter({
-    db: (globalThis as any).env.DB as D1Database
-  }),
-  providers: [
-    GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET
-    })
-  ],
-  callbacks: {
-    async session({ session, user }) {
-      session.user.id = user.id;
-      return session;
-    }
+export function getAuthConfig(env: Env): AuthConfig {
+  if (!env.DB) {
+    throw new Error('D1 database binding "DB" is not defined');
   }
-};
+  return {
+    adapter: D1Adapter({ db: env.DB }),
+    providers: [
+      GitHub({
+        clientId: env.GITHUB_ID,
+        clientSecret: env.GITHUB_SECRET
+      })
+    ],
+    callbacks: {
+      async session({ session, user }) {
+        session.user.id = user.id;
+        return session;
+      }
+    }
+  };
+}
 
 export async function handleAuth(request: Request, env: Env) {
-  return await Auth(request, {
-    ...authConfig,
-    secret: process.env.AUTH_SECRET
-  });
+  try {
+    return await Auth(request, {
+      ...getAuthConfig(env),
+      secret: env.AUTH_SECRET
+    });
+  } catch (error) {
+    console.error('Auth error:', error);
+    return new Response('Internal Server Error', { status: 500 });
+  }
 }
