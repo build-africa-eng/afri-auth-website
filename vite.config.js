@@ -4,11 +4,18 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [sveltekit()],
   build: {
-    outDir: 'build', // Ensure output directory matches wrangler.toml
+    outDir: 'build'
   },
   server: {
     fs: {
-      allow: ['.'] // Allow access to project root
+      allow: ['.']
     }
+  },
+  ssr: {
+    noExternal: ['@auth/sveltekit', '@auth/core'],
+    external: []
+  },
+  optimizeDeps: {
+    include: ['@auth/sveltekit/server']
   }
 });
