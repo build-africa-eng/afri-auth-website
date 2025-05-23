@@ -7,7 +7,8 @@ export default {
       platform: {
         d1: 'DB' // Matches wrangler.toml binding
       }
-    })
+    }),
+    outDir: 'build' // Explicitly set output directory
   },
   preprocess: vitePreprocess()
 };
