@@ -1,12 +1,12 @@
-import type { PageServerLoad } from './$types';
-import { getSession } from '@auth/sveltekit/server';
+import { SvelteKitAuth } from '@auth/sveltekit';
+import GitHub from '@auth/core/providers/github';
+import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ locals, fetch }) => {
-  const session = await getSession(locals);
-  let users = [];
-  if (session) {
-    const response = await fetch('https://afri-auth-website.afrcanfuture.workers.dev/api/users');
-    users = await response.json();
-  }
-  return { session, users };
-};
+export const handle = SvelteKitAuth({
+  providers: [
+    GitHub({
+      clientId: GITHUB_ID,
+      clientSecret: GITHUB_SECRET
+    })
+  ]
+});
