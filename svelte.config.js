@@ -5,10 +5,9 @@ export default {
   kit: {
     adapter: adapter({
       platform: {
-        d1: 'DB' // Matches wrangler.toml binding
+        d1: 'DB'
       }
-    }),
-    outDir: 'build' // Explicitly set output directory
+    })
   },
   preprocess: vitePreprocess()
 };
