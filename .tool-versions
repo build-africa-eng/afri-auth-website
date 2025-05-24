@@ -1,4 +1,0 @@
-cd <pages-project-directory>
-echo "npm 10.8.3" >> .tool-versions
-echo "bun 1.2.9" >> .tool-versions
-asdf install
