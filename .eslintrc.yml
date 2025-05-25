@@ -1,0 +1,17 @@
+env:
+  browser: true
+  node: true
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:svelte/recommended
+parser: '@typescript-eslint/parser'
+parserOptions:
+  sourceType: module
+  ecmaVersion: 2024
+  extraFileExtensions: ['.svelte']
+plugins:
+  - '@typescript-eslint'
+  - svelte
+rules:
+  no-console: warn
