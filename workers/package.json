@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy src/index.ts",
+    "deploy": "bunx wrangler deploy src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
