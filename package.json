@@ -4,7 +4,7 @@
   "type": "module",
   "engines": {
     "node": "^22.9.0",
-    "npm": "^10.8.3"
+    "npm": "^10.8.0"
   },
   "scripts": {
     "dev": "vite dev",
@@ -13,30 +13,30 @@
     "test": "vitest run",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "audit:check": "npm audit || echo 'Audit found issues, please run npm audit fix manually'",
     "sync": "svelte-kit sync"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250523.0",
-    "@sveltejs/adapter-cloudflare": "^7.0.3",
+    "@sveltejs/adapter-cloudflare": "^4.9.0",
     "@sveltejs/kit": "^2.21.1",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
-    "@types/node": "^22.15.21",
+    "@types/node": "^22.7.4",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-svelte": "^3.9.0",
-    "prettier": "^3.5.3",
-    "prettier-plugin-svelte": "^3.4.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-svelte": "^2.44.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-svelte": "^3.2.7",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vitest": "^3.1.4",
-    "wrangler": "^4.16.1"
+    "vitest": "^2.1.9",
+    "wrangler": "^3.57.2"
   },
   "dependencies": {
-    "@auth/core": "^0.39.1",
-    "@auth/d1-adapter": "^1.9.1",
-    "@auth/sveltekit": "^1.9.2"
+    "@auth/core": "^0.39.0",
+    "@auth/d1-adapter": "^1.9.0",
+    "@auth/sveltekit": "^1.9.2",
+    "cookie": "^0.7.0"
   }
 }
