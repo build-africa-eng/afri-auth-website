@@ -1,6 +1,5 @@
 name = "afri-auth-website"
 compatibility_date = "2025-05-25"
-main = "src/index.ts"
 pages_build_output_dir = ".svelte-kit/cloudflare"
 compatibility_flags = ["nodejs_compat"]
 
@@ -8,9 +7,6 @@ compatibility_flags = ["nodejs_compat"]
 binding = "DB"
 database_name = "afri-auth-db"
 database_id = "9ac69c02-2fa6-48a6-9e0a-e646aa68a684"
-
-[observability.logs]
-enabled = true
 
 [vars]
 AUTH_SECRET = "${AUTH_SECRET}"
