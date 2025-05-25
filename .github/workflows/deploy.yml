@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '22.9.0'
           cache: 'npm'
+
+      - name: Install npm
+        run: npm install -g npm@10.8.3
 
       - name: Install Dependencies
         run: npm install
@@ -33,3 +36,24 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy .svelte-kit/cloudflare --project-name=afri-auth-website --commit-dirty=true
+
+  deploy-workers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.2.9'
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy src/index.ts
