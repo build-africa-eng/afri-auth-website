@@ -23,12 +23,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        continue-on-error: false
-
-      - name: Generate package-lock.json
-        run: npm install --package-lock-only
-        continue-on-error: false
-
+        continue-on-error: false 
+        
       - name: Clean Install
         run: npm ci
         continue-on-error: false
