@@ -1,6 +1,5 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import { handleAuth } from './lib/auth';
-import { getSession } from '@auth/core';
 
 export interface Env {
   DB: D1Database;
@@ -29,19 +28,21 @@ export default {
     }
 
     if (url.pathname === '/api/users') {
-      // Check session
-      const session = await getSession(request, {
-        secret: env.AUTH_SECRET,
-        adapter: D1Adapter(env.DB),
-        providers: [],
-        trustHost: true,
-        basePath: '/api/auth',
-      });
-      if (!session?.user) {
+      // Check for session cookie (Auth.js stores session in D1)
+      const sessionToken = request.headers.get('Authorization')?.replace('Bearer ', '');
+      if (!sessionToken) {
         return new Response('Unauthorized', { status: 401 });
       }
 
       const db = env.DB;
+      const session = await db
+        .prepare('SELECT * FROM sessions WHERE sessionToken = ? AND expires > ?')
+        .bind(sessionToken, new Date().toISOString())
+        .first();
+      if (!session) {
+        return new Response('Unauthorized', { status: 401 });
+      }
+
       const { results } = await db.prepare('SELECT id, email, name FROM users').all();
       const response = new Response(JSON.stringify(results), {
         headers: {
