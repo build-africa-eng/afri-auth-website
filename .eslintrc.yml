@@ -8,7 +8,7 @@ extends:
 parser: '@typescript-eslint/parser'
 parserOptions:
   sourceType: module
-  ecmaVersion: 2024
+  ecmaVersion: 2020
   extraFileExtensions: ['.svelte']
 plugins:
   - '@typescript-eslint'
