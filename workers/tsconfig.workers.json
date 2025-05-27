@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2024",
+    "target": "ES2020",
     "module": "ESNext",
     "moduleResolution": "node",
     "strict": true,
@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "types": ["@cloudflare/workers-types/2023-07-01"],
-    "lib": ["ES2024", "WebWorker"]
+    "lib": ["ES2020", "WebWorker"]
   },
   "include": ["src/index.ts"],
   "exclude": ["node_modules", "src/**/*.{svelte,js}"]
