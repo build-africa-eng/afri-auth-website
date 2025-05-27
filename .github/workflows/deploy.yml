@@ -22,7 +22,7 @@ jobs:
           npm install -g npm@10.9.2
           npm --version
 
-      - name: Debug Directory Contents
+      - name: Debug Directory
         run: pwd && ls -la
 
       - name: Verify package.json and Lockfile
@@ -58,14 +58,12 @@ jobs:
 
       - name: Verify Build Output
         run: ls -la .svelte-kit/cloudflare || exit 1
-        continue-on-error: false
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy .svelte-kit/cloudflare --project-name=afri-auth-website --commit-dirty=true --log-level debug
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        continue-on-error: false
 
   deploy-workers:
     runs-on: ubuntu-latest
@@ -83,7 +81,7 @@ jobs:
         with:
           bun-version: '1.2.14'
 
-      - name: Debug Directory Contents
+      - name: Debug Directory
         run: pwd && ls -la
 
       - name: Verify package.json and Lockfile
@@ -104,15 +102,14 @@ jobs:
         continue-on-error: false
 
       - name: Transpile TypeScript
-        run: npx tsc src/index.ts --outFile src/index.js
+        run: npx tsc -p tsconfig.workers.json
         continue-on-error: false
 
       - name: Deploy to Cloudflare Workers
-        run: bunx wrangler deploy src/index.js --name=afri-auth-website --dry-run=false --log-level debug
+        run: bunx wrangler deploy dist/index.js --name=afri-auth-website --dry-run=false --log-level debug
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           GITHUB_ID: ${{ secrets.GITHUB_ID }}
           GITHUB_SECRET: ${{ secrets.GITHUB_SECRET }}
-        continue-on-error: false
