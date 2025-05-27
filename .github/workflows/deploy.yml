@@ -19,7 +19,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install 22.9.0
           nvm use 22.9.0
-          npm install -g npm@10.9.2
+          npm install -g npm@10.8.3
           npm --version
 
       - name: Debug Directory
@@ -79,7 +79,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: '1.2.14'
+          bun-version: '1.2.9'
 
       - name: Debug Directory
         run: pwd && ls -la
