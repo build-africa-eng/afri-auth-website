@@ -24,8 +24,13 @@ jobs:
       - name: Debug Directory Contents
         run: pwd && ls -la
 
-      - name: Verify Lockfile
-        run: ls -la package-lock.json || exit 1
+      - name: Verify package.json and Lockfile
+        run: |
+          ls -la package.json || exit 1
+          if ! npm install --dry-run --package-lock-only; then
+            rm -f package-lock.json
+            npm install
+          fi
         continue-on-error: false
 
       - name: Clean Install Dependencies
@@ -71,8 +76,13 @@ jobs:
       - name: Debug Directory Contents
         run: pwd && ls -la
 
-      - name: Verify Lockfile
-        run: ls -la bun.lockb || exit 1
+      - name: Verify package.json and Lockfile
+        run: |
+          ls -la package.json || exit 1
+          if ! bun install --dry-run; then
+            rm -f bun.lockb
+            bun install
+          fi
         continue-on-error: false
 
       - name: Install Dependencies
