@@ -31,7 +31,6 @@ export function getAuthConfig(env: Env): AuthConfig {
 export async function handleAuth(request: Request, env: Env) {
   try {
     const response = await Auth(request, getAuthConfig(env));
-    // Add CORS headers
     response.headers.set('Access-Control-Allow-Origin', '*');
     response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -40,4 +39,4 @@ export async function handleAuth(request: Request, env: Env) {
     console.error('Auth error:', error);
     return new Response('Internal Server Error', { status: 500 });
   }
-    }
+}
